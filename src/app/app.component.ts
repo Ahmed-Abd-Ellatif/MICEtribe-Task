@@ -11,11 +11,17 @@ export class AppComponent {
   array: string[] = [];
   count: number = 0;
   undoDisabled: boolean = true;
+  // ------------------
+  // ONCHANGES
+  // ------------------
   onChanges(change: any) {
     this.array.push(change);
     this.count = 0;
     this.undoDisabled = false;
   }
+  // ------------------
+  // UNDO
+  // ------------------
   undo() {
     if (this.array.length - (this.count + 1) <= 0) {
       this.undoDisabled = true;
@@ -25,6 +31,9 @@ export class AppComponent {
     this.count++;
     this.inputValue = this.array[this.array.length - (this.count + 1)];
   }
+  // ------------------
+  // REDO
+  // ------------------
   redo() {
     if (this.array.length - (this.count + 1) >= 0) {
       this.undoDisabled = false;
@@ -36,7 +45,9 @@ export class AppComponent {
       this.inputValue = this.array[this.array.length - (this.count + 1)];
     }
   }
-
+  // ------------------
+  // CLEAR
+  // ------------------
   clear() {
     this.inputValue = '';
     this.array = [];
